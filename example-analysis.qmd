@@ -1,0 +1,9 @@
+---
+title: "Example Analysis: Palmer Penguins"
+subtitle: "Exploring Species by Physical Measurements"
+format: 
+  html:
+    toc: true
+    code-fold: true
+---
+

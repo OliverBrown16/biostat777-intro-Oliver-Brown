@@ -1,5 +1,28 @@
 ---
-title: "About"
+title: "About Me"
 ---
 
-About this site
+Here is a bit more about my background and interests.
+
+## Education
+
+| Institution | Details |
+| :--- | :--- |
+| **Johns Hopkins, Bloomberg School of Public Health** | **ScM in Biostatistics** (2025 - Present) |
+| **University of Washington, Seattle** | **B.S. in Statistics: Data Science** (2021 - 2025)<br>Minor in Mathematics |
+
+---
+
+## Research Interests
+
+* Causal Inference
+* Bayesian Statistics
+* Machine Learning
+* Health Policy
+* Health Disparities
+
+---
+
+## Hobbies
+
+I'm an avid reader (I'm currently reading *2666* by Roberto Bolaño) and movie watcher (my favorite is *Blue Velvet* dir. David Lynch). I also enjoy exploring the city, trying new cafes, and playing tennis.

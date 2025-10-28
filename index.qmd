@@ -1,7 +1,21 @@
 ---
-title: "biostat777-intro-Oliver-Brown"
+title: "Oliver Brown"
+about:
+  template: trestles  # This is a clean, modern Quarto template
+  image: images/Profile.png
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      url: "https://www.linkedin.com/in/oliver-brown-363779283/"
+    - icon: mortarboard-fill # A good icon for ResearchGate
+      text: ResearchGate
+      url: "[Your ResearchGate URL]" # Add your URL here
+    - icon: github
+      text: GitHub
+      url: "https://github.com/OliverBrown16"
+    - icon: envelope-fill
+      text: Email
+      url: "mailto:obrown16@jh.com"
 ---
 
-This is a Quarto website.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Hi, I'm Oliver! I'm a first-year graduate student in the ScM Biostatistics program at the Johns Hopkins Bloomberg School of Public Health.

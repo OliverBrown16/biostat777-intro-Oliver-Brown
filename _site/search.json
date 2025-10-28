@@ -2,15 +2,85 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "About Me",
     "section": "",
-    "text": "About this site"
+    "text": "Here is a bit more about my background and interests."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "biostat777-intro-Oliver-Brown",
+    "title": "Oliver Brown",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "Hi, I’m Oliver! I’m a first-year graduate student in the ScM Biostatistics program at the Johns Hopkins Bloomberg School of Public Health."
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Oliver Brown",
+    "section": " Education",
+    "text": "Education\n\n\n\n\n\n\n\n Johns Hopkins, Bloomberg School of Public Health\n2025 - Present\n\n\nScM in Biostatistics\n\n\n\n\n\n\n\n University of Washington, Seattle\n2021 - 2025\n\n\nB.S. in Statistics: Data Science, Minor in Mathematics"
+  },
+  {
+    "objectID": "index.html#research-interests",
+    "href": "index.html#research-interests",
+    "title": "Oliver Brown",
+    "section": " Research Interests",
+    "text": "Research Interests\n\nCausal Inference, Bayesian Statistics, Machine Learning, Health Policy, and Health Disparities."
+  },
+  {
+    "objectID": "index.html#hobbies",
+    "href": "index.html#hobbies",
+    "title": "Oliver Brown",
+    "section": " Hobbies",
+    "text": "Hobbies\n\nI’m an avid reader (I’m currently reading 2666 by Roberto Bolaño), and movie watcher (my favorite is Blue Velvet dir. David Lynch). I also enjoy exploring the city, trying new cafes, and playing tennis."
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "About Me",
+    "section": "Education",
+    "text": "Education\n\n\n\n\n\n\n\nInstitution\nDetails\n\n\n\n\nJohns Hopkins, Bloomberg School of Public Health\nScM in Biostatistics (2025 - Present)\n\n\nUniversity of Washington, Seattle\nB.S. in Statistics: Data Science (2021 - 2025)Minor in Mathematics"
+  },
+  {
+    "objectID": "about.html#research-interests",
+    "href": "about.html#research-interests",
+    "title": "About Me",
+    "section": "Research Interests",
+    "text": "Research Interests\n\nCausal Inference\nBayesian Statistics\nMachine Learning\nHealth Policy\nHealth Disparities"
+  },
+  {
+    "objectID": "about.html#hobbies",
+    "href": "about.html#hobbies",
+    "title": "About Me",
+    "section": "Hobbies",
+    "text": "Hobbies\nI’m an avid reader (I’m currently reading 2666 by Roberto Bolaño) and movie watcher (my favorite is Blue Velvet dir. David Lynch). I also enjoy exploring the city, trying new cafes, and playing tennis."
+  },
+  {
+    "objectID": "example-analysis.html",
+    "href": "example-analysis.html",
+    "title": "Example Analysis: Palmer Penguins",
+    "section": "",
+    "text": "This page demonstrates a complete data analysis workflow, from data loading and wrangling to visualization and summary."
+  },
+  {
+    "objectID": "example-analysis.html#introduction",
+    "href": "example-analysis.html#introduction",
+    "title": "Example Analysis: Palmer Penguins",
+    "section": "1. Introduction",
+    "text": "1. Introduction\n\nThe Question\nHow do physical measurements, specifically bill length, flipper length, and body mass, differ across the three penguin species (Adelie, Chinstrap, and Gentoo)? Can these measurements be used to distinguish the species?\n\n\nThe Audience\nThis analysis is intended for aspiring data analysts or biology students new to R. It serves as a simple, reproducible example of a data exploration workflow using the tidyverse and palmerpenguins packages.\n\n\nThe Data"
+  },
+  {
+    "objectID": "example-analysis.html#the-data-comes-from-the-palmerpenguins-r-package-gorman2014.-this-package-contains-data-for-344-penguins-collected-from-three-islands-in-the-palmer-archipelago-antarctica.",
+    "href": "example-analysis.html#the-data-comes-from-the-palmerpenguins-r-package-gorman2014.-this-package-contains-data-for-344-penguins-collected-from-three-islands-in-the-palmer-archipelago-antarctica.",
+    "title": "Example Analysis: Palmer Penguins",
+    "section": "The data comes from the palmerpenguins R package [@Gorman2014]. This package contains data for 344 penguins collected from three islands in the Palmer Archipelago, Antarctica.",
+    "text": "The data comes from the palmerpenguins R package [@Gorman2014]. This package contains data for 344 penguins collected from three islands in the Palmer Archipelago, Antarctica."
+  },
+  {
+    "objectID": "example-analysis.html#data-setup-and-wrangling",
+    "href": "example-analysis.html#data-setup-and-wrangling",
+    "title": "Example Analysis: Palmer Penguins",
+    "section": "2. Data Setup and Wrangling",
+    "text": "2. Data Setup and Wrangling\n\nData Dictionary\nFirst, let’s load the data and inspect the variables we’ll be using.\n\n\nCode\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\n# Set a consistent theme for all plots\ntheme_set(theme_minimal())"
   }
 ]
