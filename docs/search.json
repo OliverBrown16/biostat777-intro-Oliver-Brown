@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About Me",
+    "section": "",
+    "text": "Here is a bit more about my background and interests."
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "About Me",
+    "section": "Education",
+    "text": "Education\n\n\n\n\n\n\n\nInstitution\nDetails\n\n\n\n\nJohns Hopkins, Bloomberg School of Public Health\nScM in Biostatistics (2025 - Present)\n\n\nUniversity of Washington, Seattle\nB.S. in Statistics: Data Science (2021 - 2025)Minor in Mathematics"
+  },
+  {
+    "objectID": "about.html#research-interests",
+    "href": "about.html#research-interests",
+    "title": "About Me",
+    "section": "Research Interests",
+    "text": "Research Interests\n\nCausal Inference\nBayesian Statistics\nMachine Learning\nHealth Policy\nHealth Disparities"
+  },
+  {
+    "objectID": "about.html#hobbies",
+    "href": "about.html#hobbies",
+    "title": "About Me",
+    "section": "Hobbies",
+    "text": "Hobbies\nI’m an avid reader (I’m currently reading 2666 by Roberto Bolaño) and movie watcher (my favorite is Blue Velvet dir. David Lynch). I also enjoy exploring the city, trying new cafes, and playing tennis."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Oliver Brown",
+    "section": "",
+    "text": "Hi, I’m Oliver! I’m a first-year graduate student in the ScM Biostatistics program at the Johns Hopkins Bloomberg School of Public Health."
+  }
+]
