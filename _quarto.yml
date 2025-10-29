@@ -10,13 +10,12 @@ website:
         text: Home
       - href: about.qmd
         text: About
-      - href: example-analysis.qmd
-        text: Example Analysis
+      - href: example-analysis.qmd  # <-- ADD THIS LINE
+        text: Ames Housing Analysis  # <-- ADD THIS LINE
 
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
-
 

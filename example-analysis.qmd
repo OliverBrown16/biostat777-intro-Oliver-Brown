@@ -1,9 +1,244 @@
 ---
-title: "Example Analysis: Palmer Penguins"
-subtitle: "Exploring Species by Physical Measurements"
+title: "Analysis of Ames, Iowa Housing Prices"
+subtitle: "Exploring Predictors of Median Home Value"
 format: 
   html:
     toc: true
     code-fold: true
+    lightbox: true
+bibliography: references.bib
 ---
 
+This page demonstrates a complete data analysis workflow using the Ames, Iowa housing dataset. We will explore features of homes to understand their relationship with the final sale price.
+
+## 1. Introduction
+
+### The Question
+
+What is the relationship between a home's physical characteristics (like overall quality) and its final sale price? Which features appear to be the most strongly associated with a higher price?
+
+### The Audience
+
+
+### The Data
+
+We are using the Ames, Iowa housing dataset, which was compiled by **Dean De Cock in 2011** for use in data science education [@DeCock2011]. It provides a rich alternative to the ethically-compromised Boston Housing dataset.
+
+The data is publicly available and is packaged in the `AmesHousing` R package [@AmesHousing].
+
+![A public domain map of Ames, Iowa](images/ames-map.png){fig-align="center" width="100%" lighbox="true"}
+
+---
+
+## 2. Data Setup and Wrangling
+
+### Data Dictionary
+
+First, we load the necessary packages and the data. We will use the `AmesHousing` package to load the `ames_raw` dataset.
+
+```{r}
+#| label: load-packages
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(AmesHousing)
+library(scales)
+
+theme_set(theme_minimal())
+
+```
+
+Next, we'll load the raw data and apply our wrangling pipeline. This includes selecting our five columns of interest (sale price, above-ground living area, overall quality, neighborhood, and year sold), renaming them for clarity, filtering out any rows with missing data, modifying the overall quality column into an ordered factor, and creating one new variable for price per square foot.
+
+```{r}
+
+#| label: wrangle-data
+
+data(ames_raw, package = "AmesHousing")
+
+ames_clean <- ames_raw %>%
+  select(
+    `SalePrice`, 
+    `Gr Liv Area`, 
+    `Overall Qual`, 
+    `Neighborhood`, 
+    `Yr Sold`
+  ) %>% 
+  rename( 
+    sale_price = `SalePrice`,
+    living_area = `Gr Liv Area`,
+    overall_quality = `Overall Qual`,
+    neighborhood = `Neighborhood`,
+    year_sold = `Yr Sold`
+  ) %>% 
+  filter(!is.na(sale_price)) %>%
+  mutate(
+    overall_quality = factor(
+      overall_quality, 
+      levels = 1:10, 
+      ordered = TRUE
+    ),
+    price_per_sq_ft = sale_price / living_area
+  )
+
+head(ames_clean)
+
+```
+
+:::{.callout-note}
+For simplicity, we are using only a small subset of all variables available. If we were to create a full regression model of sale price, we would consider all variables, such as kitchen quality, basement quality, and garage size.
+:::
+
+To get a quick overview, let's create a summary table of the top 5 most expensive neighborhoods by average sale price. We do this by grouping our clean data by neighborhood, calculating the averages, and sorting the list.
+
+```{r}
+
+#| label: summary-table
+
+neighborhood_summary <- ames_clean %>%
+  group_by(neighborhood) %>% 
+  summarize(
+    mean_sale_price = mean(sale_price),
+    mean_price_per_sq_ft = mean(price_per_sq_ft, na.rm = TRUE),
+    count = n()
+  ) %>% 
+  arrange(desc(mean_sale_price))
+
+head(neighborhood_summary, 5)
+
+```
+
+---
+
+## 3. Data Visualization and Analysis
+
+Now we can start plotting. First, we'll create a scatter plot to visualize the relationship between living area and sale price, coloring the dots by overall quality.
+
+```{r}
+
+#| label: plot-scatter
+#| fig-width: 8
+#| fig-height: 5
+
+ggplot(ames_clean, 
+       aes(x = living_area, y = sale_price)) +
+  geom_point(aes(color = overall_quality), alpha = 0.6) +
+  scale_y_continuous(labels = label_dollar()) +
+  scale_x_continuous(labels = label_comma()) +
+  labs(
+    title = "Sale Price vs. Above-Ground Living Area",
+    subtitle = "Price increases with living area; color shows overall quality rating.",
+    x = "Living Area (Square Feet)",
+    y = "Sale Price (USD)",
+    color = "Overall Quality",
+    caption = "Data Source: AmesHousing R Package"
+  )
+
+```
+
+Next, to see how quality impacts the distribution of prices, we'll use a boxplot. This shows the median and spread of sale prices for each of the 10 quality ratings.
+
+```{r}
+
+#| label: plot-boxplot
+#| fig-width: 8
+#| fig-height: 5
+
+ggplot(ames_clean, aes(x = overall_quality, y = sale_price)) +
+  geom_boxplot(aes(fill = overall_quality), show.legend = FALSE) +
+  scale_y_continuous(labels = label_dollar()) +
+  labs(
+    title = "Distribution of Sale Price by Overall Quality",
+    subtitle = "Median sale price (the line in the box) increases significantly with quality.",
+    x = "Overall Quality Rating (1=Very Poor, 10=Very Excellent)",
+    y = "Sale Price (USD)",
+    caption = "Data Source: AmesHousing R Package"
+  )
+
+```
+
+::: {.callout-note}
+Note that the quality levels on the tail ends (like "Very Poor" and "Very Excellent") have far fewer data points than the levels in the middle. Because of this smaller sample size, the median shown for these categories are less reliable estimates than those for the more common, central quality ratings.
+:::
+
+Finally, let's see how the overall market changed over time. We'll use a histogram and facet the plot by year to create separate price distribution charts for each year in the data.
+
+```{r}
+
+#| label: plot-histogram-facet
+#| fig-width: 9
+#| fig-height: 6
+
+median_prices <- ames_clean %>%
+  group_by(year_sold) %>%
+  summarize(median_price = median(sale_price)) %>%
+  mutate(
+    median_label = scales::label_dollar(scale = 1/1000, suffix = "k")(median_price)
+  )
+
+ggplot(ames_clean, aes(x = sale_price)) +
+  geom_histogram(
+    aes(fill = after_stat(count)), 
+    bins = 50, 
+    show.legend = FALSE,
+    alpha = 0.7 
+  ) +
+  
+  geom_vline(
+    data = median_prices,
+    aes(xintercept = median_price),
+    color = "red",
+    linetype = "dashed",
+    linewidth = 0.7
+  ) +
+  
+  geom_text(
+    data = median_prices,
+    aes(
+      x = median_price + 9000, 
+      label = median_label
+    ),
+    y = 90, 
+    color = "red",
+    size = 3,
+    hjust = 0 
+  ) +
+  
+  scale_fill_gradient(low = "lightblue", high = "darkblue") +
+  scale_x_continuous(labels = label_dollar(scale = 1/1000, suffix = "k")) +
+  facet_wrap(~ year_sold) +
+  labs(
+    title = "Distribution of Home Sale Prices by Year",
+    subtitle = "The median price (red line) appears to have shifted downward during the Great Recession.",
+    x = "Sale Price (USD)",
+    y = "Number of Homes Sold",
+    caption = "Data Source: AmesHousing R Package"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8)) +
+  
+  coord_cartesian(xlim = c(0, 500000))
+
+```
+
+---
+
+## 4. Summary
+
+---
+
+## 5. Functions Used
+
+* **`dplyr` / `tidyr`:**
+    * `dplyr::select()`
+    * `dplyr::rename()`
+    * `dplyr::filter()`
+    * `mutate()`
+    * `group_by()`
+    * `summarize()`
+    * `arrange()`
+* **`ggplot2`:**
+    * `geom_point()`
+    * `geom_boxplot()`
+    * `geom_histogram()`
+    * `facet_wrap()`

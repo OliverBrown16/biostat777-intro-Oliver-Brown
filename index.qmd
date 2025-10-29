@@ -1,15 +1,12 @@
 ---
 title: "Oliver Brown"
 about:
-  template: trestles  # This is a clean, modern Quarto template
+  template: trestles
   image: images/Profile.png
   links:
     - icon: linkedin
       text: LinkedIn
       url: "https://www.linkedin.com/in/oliver-brown-363779283/"
-    - icon: mortarboard-fill # A good icon for ResearchGate
-      text: ResearchGate
-      url: "[Your ResearchGate URL]" # Add your URL here
     - icon: github
       text: GitHub
       url: "https://github.com/OliverBrown16"
@@ -18,4 +15,4 @@ about:
       url: "mailto:obrown16@jh.com"
 ---
 
-Hi, I'm Oliver! I'm a first-year graduate student in the ScM Biostatistics program at the Johns Hopkins Bloomberg School of Public Health.
+Hi, I'm Oliver! I'm a first-year graduate student in the ScM Biostatistics program at the Johns Hopkins Bloomberg School of Public Health. I'm originally from Seattle, WA, where I grew up before moving to Baltimore. 
