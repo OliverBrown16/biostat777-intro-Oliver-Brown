@@ -102,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./example-analysis.html"> 
-<span class="menu-text">Example Analysis</span></a>
+<span class="menu-text">Ames Housing Analysis</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -267,7 +267,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/OliverBrown16\.github\.io\/biostat777-intro-Oliver-Brown\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
