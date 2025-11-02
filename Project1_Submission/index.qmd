@@ -87,9 +87,9 @@ Go to the Discussion Board in CoursePlus and write a short post with a link (URL
 
 As you read the introductions from other folks in the class, feel free to comment/reply using Discussion board.
 
-- **Link to your GitHub repository**: [Delete this text and replace the text with the link to the public GitHub repo you created above for your website]
+- **Link to your GitHub repository**: [Repo](https://github.com/OliverBrown16/biostat777-intro-Oliver-Brown)
 
-- **Link to your deployed website**: [Delete this and replace the text with the link to the public deployed website you created above]
+- **Link to your deployed website**: [Website](https://oliverbrown16.github.io/biostat777-intro-Oliver-Brown/example-analysis.html)
 
 # Part 2
 
@@ -112,77 +112,79 @@ ID,Name,Age,Gender,Grade,Subject
 1. Use [`wget`](https://www.gnu.org/software/wget) or [`curl`](https://curl.se/docs/tutorial.html) to download the `students.csv` file locally from [here](https://github.com/stephaniehicks/jhustatprogramming2025/blob/main/projects/01-project/students.csv).
 
 ``` {bash}
-# Add your solution here
 
+curl -o students.csv https://raw.githubusercontent.com/stephaniehicks/jhustatprogramming2025/main/projects/01-project/students.csv
 
 ```
 
 2. Display the contents of the `students.csv` file using the `cat` command.
 
 ```{bash}
-# Add your solution here
 
+cat students.csv
 
 ```
 
 3. Display only the first 5 lines of the file using `head` to show the first few lines. 
 
 ```{bash}
-# Add your solution here
 
+head -n 5 students.csv
 
 ```
 
 4. Display only the last 3 lines of the file using `tail` to show the last few lines.
 
 ```{bash}
-# Add your solution here
 
+tail -n 3 students.csv
 
 ```
 
 5. Count the number of lines in the file using the `wc` command to count the lines.
 
 ```{bash}
-# Add your solution here
 
+wc -l students.csv 
 
 ```
 
 6. Find all students who are taking "Math" as a subject using `grep` to filter lines with the subject "Math".
 
 ```{bash}
-# Add your solution here
 
+grep "Math" students.csv 
 
 ```
 
 7. Find all female students using `grep` or `awk` to filter based on gender.
 ```{bash}
-# Add your solution here
 
+awk -F',' '$4 == "F"' students.csv
 
 ```
 
 8. Sort the file by the students' ages in ascending order. Use `sort` to order by the "Age" column.
 
 ```{bash}
-# Add your solution here
 
+sort -t, -k3n students.csv 
 
 ```
 
 1. Find the unique subjects listed in the file. Use `cut`, `sort`, and `uniq` to extract unique subjects.
 
 ```{bash}
-# Add your solution here
+
+tail -n +2 students.csv | cut -d',' -f6 | sort | uniq
 
 ```
 
 10. Calculate the average grade of the students. Use `awk` to sum the grades and divide by the number of students.
 
 ```{bash}
-# Add your solution here
+
+sed 's/Math/Mathematics/g' students.csv
 
 ```
 
@@ -190,15 +192,16 @@ ID,Name,Age,Gender,Grade,Subject
 
 
 ```{bash}
-# Add your solution here
+
+awk -F',' 'NR > 1 {sum += $5; count++} END {print "Average Grade:", sum/count}' students.csv
 
 ```
 
 12. Put all the commands into a shell script (`.sh`) file and run the command below to show the output from all the commands together. 
 
 ```{bash}
-# Add your solution here 
 
+./project1_part2_script.sh 
 
 ```
 
