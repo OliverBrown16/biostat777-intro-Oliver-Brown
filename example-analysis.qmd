@@ -1,6 +1,6 @@
 ---
 title: "Analysis of Ames, Iowa Housing Prices"
-subtitle: "Exploring Predictors of Median Home Value"
+subtitle: "Exploring Predictors of Home Value"
 format: 
   html:
     toc: true
@@ -19,6 +19,7 @@ What is the relationship between a home's physical characteristics (like overall
 
 ### The Audience
 
+This analysis is towards students in the beginning of their journey in data science. It serves as an introductory example of exploratory data analysis, demonstrating how to move from a raw dataset to a conclusion.
 
 ### The Data
 
@@ -34,7 +35,7 @@ The data is publicly available and is packaged in the `AmesHousing` R package [@
 
 ### Data Dictionary
 
-First, we load the necessary packages and the data. We will use the `AmesHousing` package to load the `ames_raw` dataset.
+First, we load the necessary packages and the data. This analysis relies heavily on the `tidyverse` collection of packages for wrangling and visualization of data [@wickham2019welcome]. We will also use the `AmesHousing` package to load the `ames_raw` dataset.
 
 ```{r}
 #| label: load-packages
@@ -50,6 +51,12 @@ theme_set(theme_minimal())
 ```
 
 Next, we'll load the raw data and apply our wrangling pipeline. This includes selecting our five columns of interest (sale price, above-ground living area, overall quality, neighborhood, and year sold), renaming them for clarity, filtering out any rows with missing data, modifying the overall quality column into an ordered factor, and creating one new variable for price per square foot.
+
+:::{.column-margin}
+**A Note on Feature Engineering**
+
+Creating new variables from existing ones, like we did with `price_per_sq_ft`, is a practice called *feature engineering*. This new variable can sometimes reveal patterns that are not obvious from the original data alone.
+:::
 
 ```{r}
 
@@ -117,13 +124,9 @@ Now we can start plotting. First, we'll create a scatter plot to visualize the r
 
 ```{r}
 
-#| label: plot-scatter
-#| fig-width: 8
-#| fig-height: 5
-
 ggplot(ames_clean, 
        aes(x = living_area, y = sale_price)) +
-  geom_point(aes(color = overall_quality), alpha = 0.6) +
+  geom_point(aes(color = overall_quality), alpha = 0.8) +
   scale_y_continuous(labels = label_dollar()) +
   scale_x_continuous(labels = label_comma()) +
   labs(
@@ -141,9 +144,7 @@ Next, to see how quality impacts the distribution of prices, we'll use a boxplot
 
 ```{r}
 
-#| label: plot-boxplot
-#| fig-width: 8
-#| fig-height: 5
+
 
 ggplot(ames_clean, aes(x = overall_quality, y = sale_price)) +
   geom_boxplot(aes(fill = overall_quality), show.legend = FALSE) +
@@ -165,10 +166,6 @@ Note that the quality levels on the tail ends (like "Very Poor" and "Very Excell
 Finally, let's see how the overall market changed over time. We'll use a histogram and facet the plot by year to create separate price distribution charts for each year in the data.
 
 ```{r}
-
-#| label: plot-histogram-facet
-#| fig-width: 9
-#| fig-height: 6
 
 median_prices <- ames_clean %>%
   group_by(year_sold) %>%
@@ -224,6 +221,8 @@ ggplot(ames_clean, aes(x = sale_price)) +
 ---
 
 ## 4. Summary
+
+Our analysis of the Ames, Iowa housing data confirms strong and intuitive relationships between home features and price. We found that both above-ground living area and overall quality are powerful drivers of a home's final sale price. Our visualizations clearly show that as a home's size and quality rating increase, its median sale price also tends to increase. This was particularly evident in the boxplot, which showed a clear step-up in median price with each quality point. Furthermore, by examining the market from 2006-2010, we observed a slight dip in price after 2007, with the median dropping from a high of $\$$165k in 2007 to $\$$155k in 2010, and with further analysis, we can see if this difference in median price is significant or not. While this exploratory analysis focused on only a few key variables, it sets a clear foundation for a more complex predictive model that would likely incorporate other factors to improve accuracy.
 
 ---
 
