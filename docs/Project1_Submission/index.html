@@ -334,7 +334,7 @@ Note
                                  Dload  Upload   Total   Spent    Left  Speed
 
   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-100   257  100   257    0     0    682      0 --:--:-- --:--:-- --:--:--   683</code></pre>
+100   257  100   257    0     0   1717      0 --:--:-- --:--:-- --:--:--  1724</code></pre>
 </div>
 </div>
 <ol start="2" type="1">
@@ -458,7 +458,17 @@ Science</code></pre>
 </ol>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="st">'s/Math/Mathematics/g'</span> students.csv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="at">-F</span><span class="st">','</span> <span class="st">'NR &gt; 1 {sum += $5; count++} END {print "Average Grade:", sum/count}'</span> students.csv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Average Grade: 83.3</code></pre>
+</div>
+</div>
+<ol start="11" type="1">
+<li>Replace all occurrences of “Math” with “Mathematics” in the file. Use <code>sed</code> to perform the replacement.</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="st">'s/Math/Mathematics/g'</span> students.csv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>ID,Name,Age,Gender,Grade,Subject
 1,Alice,20,F,88,Mathematics
@@ -473,16 +483,6 @@ Science</code></pre>
 10,Judy,22,F,79,History</code></pre>
 </div>
 </div>
-<ol start="11" type="1">
-<li>Replace all occurrences of “Math” with “Mathematics” in the file. Use <code>sed</code> to perform the replacement.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="at">-F</span><span class="st">','</span> <span class="st">'NR &gt; 1 {sum += $5; count++} END {print "Average Grade:", sum/count}'</span> students.csv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Average Grade: 83.3</code></pre>
-</div>
-</div>
 <ol start="12" type="1">
 <li>Put all the commands into a shell script (<code>.sh</code>) file and run the command below to show the output from all the commands together.</li>
 </ol>
@@ -494,8 +494,7 @@ Science</code></pre>
                                  Dload  Upload   Total   Spent    Left  Speed
 
   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-100   257  100   257    0     0    608      0 --:--:-- --:--:-- --:--:--   607
+100   257  100   257    0     0   3743      0 --:--:-- --:--:-- --:--:--  3779
 ID,Name,Age,Gender,Grade,Subject
 1,Alice,20,F,88,Math
 2,Bob,22,M,76,History
@@ -538,6 +537,7 @@ ID,Name,Age,Gender,Grade,Subject
 History
 Math
 Science
+Average Grade: 83.3
 ID,Name,Age,Gender,Grade,Subject
 1,Alice,20,F,88,Mathematics
 2,Bob,22,M,76,History
@@ -548,7 +548,7 @@ ID,Name,Age,Gender,Grade,Subject
 7,Grace,23,F,78,Science
 8,Heidi,21,F,88,Mathematics
 9,Ivan,20,M,85,Science
-10,Judy,22,F,79,HistoryAverage Grade: 83.3</code></pre>
+10,Judy,22,F,79,History</code></pre>
 </div>
 </div>
 
