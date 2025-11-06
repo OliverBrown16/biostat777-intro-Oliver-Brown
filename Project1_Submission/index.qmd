@@ -184,7 +184,7 @@ tail -n +2 students.csv | cut -d',' -f6 | sort | uniq
 
 ```{bash}
 
-sed 's/Math/Mathematics/g' students.csv
+awk -F',' 'NR > 1 {sum += $5; count++} END {print "Average Grade:", sum/count}' students.csv
 
 ```
 
@@ -193,7 +193,7 @@ sed 's/Math/Mathematics/g' students.csv
 
 ```{bash}
 
-awk -F',' 'NR > 1 {sum += $5; count++} END {print "Average Grade:", sum/count}' students.csv
+sed 's/Math/Mathematics/g' students.csv
 
 ```
 
